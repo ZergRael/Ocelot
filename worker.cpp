@@ -510,7 +510,7 @@ std::string worker::announce(const std::string &input, torrent &tor, user_ptr &u
 		record << '(' << userid << ',' << tor.id << ',' << active << ',' << uploaded << ',' << downloaded << ',' << upspeed << ',' << downspeed << ',' << left << ',' << corrupt << ',' << (cur_time - p->first_announced) << ',' << p->announces << ',';
 		std::string record_str = record.str();
 		std::string record_ip;
-		if (u->is_protected()) {
+		if (u->is_protected() || invalid_ip) {
 			record_ip = "";
 		} else {
 			record_ip = ip;
@@ -545,7 +545,7 @@ std::string worker::announce(const std::string &input, torrent &tor, user_ptr &u
 
 		std::stringstream record;
 		std::string record_ip;
-		if (u->is_protected()) {
+		if (u->is_protected() || invalid_ip) {
 			record_ip = "";
 		} else {
 			record_ip = ip;
